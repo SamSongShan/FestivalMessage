@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.songshan.festivalmessage.activity.SendMsg"
+    tools:showIn="@layout/activity_send_msg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/id_et_content"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="#f2f2d8"
+            android:textColor="#968e8e"
+            android:textSize="14sp"
+            android:maxHeight="200dp"
+            android:gravity="left|top"/>
+
+        <Button
+            android:id="@+id/id_bt_lxr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="添加联系人" />
+
+        <com.example.songshan.festivalmessage.Utiles.FlowLayout
+            android:id="@+id/id_flowlayout_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </com.example.songshan.festivalmessage.Utiles.FlowLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/id_bt_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="46dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="16dp"
+            app:backgroundTint="#ff0"
+            app:borderWidth="0dp"
+            android:src="@drawable/icon_to_send"/>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_gravity="center"
+        android:id="@+id/id_layout_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal|bottom"
+            android:orientation="horizontal">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="发送中" />
+        </LinearLayout>
+
+    </FrameLayout>
+</FrameLayout>
