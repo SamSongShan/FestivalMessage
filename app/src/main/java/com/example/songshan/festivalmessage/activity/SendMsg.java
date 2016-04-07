@@ -86,7 +86,7 @@ public class SendMsg extends AppCompatActivity {
         registerReceiver(mDeliverPiBroadcastReciiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                Log.e("TAG", "联系人已经收到短信");
+                Log.e("TAG", "联系人已经收到短信l");
 
             }
         }, new IntentFilter());
