@@ -3,6 +3,7 @@ package com.example.songshan.festivalmessage.db;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.Settings;
 
 import com.example.songshan.festivalmessage.bean.SendedMsg;
 
@@ -17,12 +18,14 @@ public class SmsDbOpenHelper extends SQLiteOpenHelper {
 
         super(context.getApplicationContext(), DB_NAME, null, DB_VERSION);
     }
+
     private static SmsDbOpenHelper mHelper;
-    public static SmsDbOpenHelper getInstance(Context context){
-        if (mHelper==null){
-            synchronized (SmsDbOpenHelper.class){
-                if (mHelper==null){
-                    mHelper=new SmsDbOpenHelper(context);
+
+    public static SmsDbOpenHelper getInstance(Context context) {
+        if (mHelper == null) {
+            synchronized (SmsDbOpenHelper.class) {
+                if (mHelper == null) {
+                    mHelper = new SmsDbOpenHelper(context);
                 }
             }
         }
@@ -31,14 +34,15 @@ public class SmsDbOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "create table" +
-                SendedMsg.TABLE_NAME + "(" + "_id integer primary key autoincrement ," +
-                SendedMsg.COLUMN_DATE + "integer ," +
-                SendedMsg.COLUMN_FES_NAME + "text," +
-                SendedMsg.COLUMN_MSG + "text," +
-                SendedMsg.COLUMN_NAMES + "text," +
-                SendedMsg.COLUMN_NUMBERS + "text," +
+        String sql = "create table if not exists " +
+                SendedMsg.TABLE_NAME + "(_id integer primary key autoincrement ," +
+                SendedMsg.COLUMN_DATE + " integer ," +
+                SendedMsg.COLUMN_FES_NAME + " text," +
+                SendedMsg.COLUMN_MSG + " text," +
+                SendedMsg.COLUMN_NAMES + " text," +
+                SendedMsg.COLUMN_NUMBERS + " text" +
                 ")";
+        //System.out.println(sql);
         db.execSQL(sql);
     }
 

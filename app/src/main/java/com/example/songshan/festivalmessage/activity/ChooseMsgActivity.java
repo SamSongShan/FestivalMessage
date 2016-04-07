@@ -54,7 +54,7 @@ public class ChooseMsgActivity extends AppCompatActivity {
                 if (convertView == null) {
                     convertView = mInflater.inflate(R.layout.item_msg, parent, false);
                 }
-                TextView conten = (TextView) convertView.findViewById(R.id.listView_msg);
+                TextView conten = (TextView) convertView.findViewById(R.id.tv_listview_msg);
                 Button tosent = (Button) convertView.findViewById(R.id.bt_tosend);
                 conten.setText(getItem(position).getContent());
                 tosent.setOnClickListener(new View.OnClickListener() {

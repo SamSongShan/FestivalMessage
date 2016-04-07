@@ -117,7 +117,8 @@ public class SendMsg extends AppCompatActivity {
     private void initData() {
         mFestivalId = getIntent().getIntExtra("festivalId", -1);
         msgId = getIntent().getIntExtra("msgId", -1);
-        setTitle(FestivalLab.getmInstance().getFestivalById(mFestivalId).getName());
+        mFestival=FestivalLab.getmInstance().getFestivalById(mFestivalId);
+        setTitle(mFestival.getName());
     }
 
     private HashSet<String> mContactName = new HashSet<>();
@@ -198,11 +199,13 @@ public class SendMsg extends AppCompatActivity {
 
                     return;
                 }
-                //String msg = idEtContent.getText().toString();
-                String msg = mMsg.getContent().toString();
+
+                String msg = idEtContent.getText().toString();
+                //String msg = mMsg.getContent().toString();
                 if (TextUtils.isEmpty(msg)) {
 
                     Toast.makeText(SendMsg.this, "短信内容不能为空", Toast.LENGTH_LONG).show();
+                    return;
                 }
                 idLayoutLoading.setVisibility(View.VISIBLE);
                 mTotalCount = mSmsBiz.sendMsg(mContactnum, buildSendMsg(msg), mSendPi, mDeliverPi);
@@ -223,14 +226,14 @@ public class SendMsg extends AppCompatActivity {
         sendedMsg.setFestivalName(mFestival.getName());
         String names="";
         for (String name:mContactName){
-            names+=name+"..";
+            names+=name+":";
         }
         sendedMsg.setNames(names.substring(0,names.length()-1));
         String numbers="";
         for (String number:mContactnum){
-            numbers+= number+"..";
+            numbers+= number+":";
         }
-        sendedMsg.setNames(numbers.substring(0,numbers.length()-1));
+        sendedMsg.setNumbers(numbers.substring(0,numbers.length()-1));
         return sendedMsg;
     }
 
