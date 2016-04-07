@@ -167,7 +167,7 @@ public class SendMsg extends AppCompatActivity {
 
         }
         cursor.close();
-        return number;
+        return null;
     }
 
     private EditText idEtContent;
