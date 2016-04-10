@@ -21,6 +21,8 @@ import com.example.songshan.festivalmessage.Utiles.FlowLayout;
 import com.example.songshan.festivalmessage.bean.SendedMsg;
 import com.example.songshan.festivalmessage.db.SmsProvider;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -60,7 +62,8 @@ public class SmsHistoryFragment extends ListFragment {
                 idTvDate = (TextView) view.findViewById(R.id.id_tv_date);
                 idTvMsg.setText(cursor.getString(cursor.getColumnIndex(SendedMsg.COLUMN_MSG)));
                 idTvFes.setText(cursor.getString(cursor.getColumnIndex(SendedMsg.COLUMN_FES_NAME)));
-                idTvDate.setText(cursor.getString(cursor.getColumnIndex(SendedMsg.COLUMN_DATE)));
+                Long dateVal = cursor.getLong(cursor.getColumnIndex(SendedMsg.COLUMN_DATE));
+                idTvDate.setText(parseData(dateVal));
                 String names = cursor.getString(cursor.getColumnIndex(SendedMsg.COLUMN_NAMES));
                 if (TextUtils.isEmpty(names)){
                     return ;
@@ -72,6 +75,12 @@ public class SmsHistoryFragment extends ListFragment {
             }
         };
         setListAdapter(mCursorAdapter);
+    }
+    DateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
+    private String parseData(Long dateVal) {
+
+        return df.format(dateVal);
     }
 
     private void addTag(String name, FlowLayout idFlContacts) {
